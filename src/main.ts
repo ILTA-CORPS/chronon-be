@@ -15,9 +15,7 @@ async function bootstrap() {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   AppSingleton.setInstance(app);
-  const port = process.env.APP_PORT || 3000;
-  const host = '0.0.0.0'; // Mendengarkan pada semua alamat IP
-  await app.listen(port, host);
+  await app.listen(3000);
 }
 
 bootstrap();
