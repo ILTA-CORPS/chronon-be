@@ -11,4 +11,7 @@ export class LetterRequestDto {
 
   @IsBoolean()
   isPrivate: boolean;
+
+  @IsBoolean()
+  isAnonymous: boolean;
 }

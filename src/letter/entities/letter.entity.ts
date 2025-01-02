@@ -17,6 +17,9 @@ export class Letter extends BaseEntity {
   @Column({ name: 'is_private', type: 'boolean', default: false })
   isPrivate: boolean;
 
+  @Column({ name: 'is_anonymous', type: 'boolean', default: false })
+  isAnonymous: boolean;
+
   @ManyToOne(() => User, (user) => user.letters)
   @JoinColumn({ name: 'user_id' })
   user: User;

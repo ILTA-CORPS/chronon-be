@@ -14,5 +14,8 @@ export class LetterResponseDto {
   isPrivate: boolean;
 
   @Expose()
+  isAnonymous: boolean;
+
+  @Expose()
   createdAt: boolean;
 }
