@@ -28,15 +28,7 @@ export class LetterService {
     return this.letterRepository.save(letter);
   }
 
-  async findAll(user: UserEntity) {
-    return await this.letterRepository.find({
-      where: {
-        user: { id: user.id },
-      },
-    });
-  }
-
-  async paginate(
+  async findAll(
     user: UserEntity,
     options: IPaginationOptions & {
       search?: string;
@@ -53,7 +45,7 @@ export class LetterService {
       });
     }
 
-    queryBuilder.orderBy('letter.content', 'ASC', 'NULLS FIRST');
+    queryBuilder.orderBy('letter.created_at', 'ASC');
 
     return paginate<LetterEntity>(queryBuilder, {
       limit: options.limit || 10,

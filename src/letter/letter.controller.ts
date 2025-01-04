@@ -45,12 +45,11 @@ export class LetterController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
     @Query('search', new DefaultValuePipe('')) search: string,
-    self: boolean,
     @User() user: UserEntity,
   ) {
     return new ApiResponse(
       'Letters retrieved successfully',
-      await this.letterService.paginate(user, { page, limit, search }),
+      await this.letterService.findAll(user, { page, limit, search }),
     );
   }
 

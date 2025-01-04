@@ -8,6 +8,7 @@ import { CatchEverythingFilter } from './common/filters/http-exception.filter';
 import { MemoryStoredFile, NestjsFormDataModule } from 'nestjs-form-data';
 import { StorageModule } from './storage/storage.module';
 import { LetterModule } from './letter/letter.module';
+import { FeedModule } from './feed/feed.module';
 import { IsNotExist } from './common/validators/is-not-exist.decorator';
 import { IsExist } from './common/validators/is-exist.decorator';
 import { HelperModule } from './helper/helper.module';
@@ -21,6 +22,7 @@ import { HelperModule } from './helper/helper.module';
     AuthModule,
     UserModule,
     LetterModule,
+    FeedModule,
     NestjsFormDataModule.config({
       isGlobal: true,
       storage: MemoryStoredFile,
