@@ -22,6 +22,7 @@ export class LetterService {
       content: createLetterDto.content,
       reminderDate: createLetterDto.reminderDate,
       isPrivate: createLetterDto.isPrivate,
+      isAnonymous: createLetterDto.isAnonymous,
       user: user,
     });
 

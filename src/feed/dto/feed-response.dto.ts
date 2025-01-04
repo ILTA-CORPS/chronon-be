@@ -1,4 +1,12 @@
-import { Expose, Type, Transform } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
+
+class UserDto {
+  @Expose({ name: 'userUuid' })
+  id: string;
+
+  @Expose({ name: 'fullName' })
+  fullName: string;
+}
 
 export class FeedResponseDto {
   @Expose({ name: 'letterUuid' })
@@ -16,22 +24,10 @@ export class FeedResponseDto {
   @Expose()
   isAnonymous: boolean;
 
-  // Biasanya ini Date, bukan boolean
   @Expose()
   createdAt: Date;
 
-  // Apakah memang butuh array? Jika hanya satu user, jadikan user: UserDto
   @Expose()
   @Type(() => UserDto)
-  items: UserDto;
-}
-
-export class UserDto {
-  @Expose()
-  @Transform(({ obj }) => obj.user?.userUuid)
-  id: string;
-
-  @Expose()
-  @Transform(({ obj }) => obj.user?.fullName)
-  name: string;
+  user: UserDto;
 }
