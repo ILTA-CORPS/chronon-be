@@ -11,12 +11,16 @@ import { FeedService } from './feed.service';
 import { Serialize } from '../common/interceptor/serialize.interceptor';
 import { FeedResponseDto } from './dto/feed-response.dto';
 import { ApiResponse } from '../common/utils/ApiResponse';
+import { PreSignedUrl } from '../common/decorator/presigned-url.decorator';
 
 @Controller('feed')
 export class FeedController {
   constructor(private readonly feedService: FeedService) {}
 
   @Get()
+  @PreSignedUrl([
+    { originalKey: 'profilePicturePath', urlKey: 'profilePictureUrl' },
+  ])
   @Serialize(FeedResponseDto)
   async findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,

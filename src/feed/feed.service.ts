@@ -22,10 +22,10 @@ export class FeedService {
 
     queryBuilder.leftJoinAndSelect('letter.user', 'user');
 
-    queryBuilder.where('letter.is_anonymous = false');
+    queryBuilder.where('letter.is_private = false');
 
     if (options.search) {
-      queryBuilder.where('letter.content ILIKE :search', {
+      queryBuilder.andWhere('letter.content ILIKE :search', {
         search: `%${options.search}%`,
       });
     }
@@ -42,8 +42,9 @@ export class FeedService {
     return this.letterRepository.findOneOrFail({
       where: {
         letterUuid: id,
-        isAnonymous: false,
+        isPrivate: false,
       },
+      relations: ['user'],
     });
   }
 }
